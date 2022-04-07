@@ -10,7 +10,7 @@ sealed trait Handlers[-R, +E, Ids] { self =>
 
 object Handlers {
 
-  def handlersToList[R, E, _](handlers: Handlers[R, E, _]): List[Handler[R, E]] =
+  def handlersToList[R, E, Ids](handlers: Handlers[R, E, Ids]): List[Handler[R, E]] =
     handlers match {
       case Concat(l, r) => handlersToList(l) ++ handlersToList(r)
       case Single(h)    => List(h.asInstanceOf[Handler[R, E]])

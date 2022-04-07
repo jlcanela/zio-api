@@ -5,11 +5,12 @@ import zhttp.service.{ChannelFactory, Client, EventLoopGroup}
 import zio.ZIO
 
 import scala.collection.mutable
+import zhttp.http.Response
 
 private[api] object ClientInterpreter {
   def interpret[Params, Input, Output](host: String)(
       api: API[Params, Input, Output]
-  )(params: Params, input: Input): ZIO[EventLoopGroup with ChannelFactory, Throwable, Client.ClientResponse] = {
+  )(params: Params, input: Input): ZIO[EventLoopGroup with ChannelFactory, Throwable, Response] = {
     val method = api.method.toZioHttpMethod
     val state  = new RequestState()
     parseUrl(api.requestParser, state)(params)
@@ -42,7 +43,7 @@ private[api] object ClientInterpreter {
         else
           ""
 
-      (pathBuilder.result + queryString, headers.toMap)
+      (pathBuilder.result() + queryString, headers.toMap)
     }
   }
 

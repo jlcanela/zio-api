@@ -20,12 +20,12 @@ private[api] object ServerInterpreter {
         request.bodyAsString
           .flatMap { string =>
             string.fromJson[Input] match {
-              case Left(err)    => UIO(Response.text(s"Invalid input: $err"))
+              case Left(err)    => UIO.succeed(Response.text(s"Invalid input: $err"))
               case Right(value) => process(value)
             }
           }
           .catchAll { err =>
-            UIO(Response.text(s"Error parsing request body: $err"))
+            UIO.succeed(Response.text(s"Error parsing request body: $err"))
           }
       }
 

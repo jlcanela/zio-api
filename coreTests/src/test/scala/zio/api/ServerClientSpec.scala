@@ -36,7 +36,7 @@ object ServerClientSpec extends DefaultRunnableSpec {
 
   val usersHandler =
     usersAPI.handle { _ =>
-      UIO {
+      UIO.attempt {
         List(
           User(UUID.randomUUID(), "kit@email.com"),
           User(UUID.randomUUID(), "another@gmail.com")
@@ -89,7 +89,7 @@ object ServerClientSpec extends DefaultRunnableSpec {
           count2 <- countAPI.call(host)(())
         } yield assertTrue(count == 0 && count2 == 6)
       }
-    ).provideCustom(
+    ).provide(
       EventLoopGroup.auto(),
       ChannelFactory.auto,
       serverLayer,

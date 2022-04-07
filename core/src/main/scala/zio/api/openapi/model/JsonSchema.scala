@@ -90,7 +90,7 @@ object SchemaObject {
         )
       case collection: Schema.Collection[_, _] =>
         collection match {
-          case seq: Schema.Sequence[_, _] =>
+          case seq: Schema.Sequence[_, _, _] =>
             SchemaObjectBase(
               `type` = SchemaType.Array,
               items = Some(fromSchema(seq.schemaA)),
@@ -100,7 +100,7 @@ object SchemaObject {
             )
         }
 
-      case Schema.Transform(codec, f, g, annotations) => ???
+      case Schema.Transform(codec, f, g, annotations, identity) => ???
       case Schema.Primitive(standardType, annotations) =>
         val tpe    = schemaTypeFromStandardType(standardType)
         val format = formatFromStandardType(standardType)

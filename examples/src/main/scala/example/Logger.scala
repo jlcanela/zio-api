@@ -13,9 +13,9 @@ object Logger {
 
   // node of your dependency graph
   val live: ULayer[Logger] =
-    UIO(LoggerLive()).toLayer[Logger]
+    (LoggerLive.apply _).toLayer[Logger]
 
   final case class LoggerLive() extends Logger {
-    override def log(msg: String): UIO[Unit] = UIO(println(msg))
+    override def log(msg: String): UIO[Unit] = UIO.succeed(println(msg))
   }
 }

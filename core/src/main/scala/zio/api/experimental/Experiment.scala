@@ -158,6 +158,8 @@ ${right.render.split("\n").map("  " + _).mkString("\n")}
           val (l, i) = fromPath(lhs, index)
           val (r, j) = fromPath(rhs, i)
           Zip(l, r) -> j
+        case Path.MapPath(path, _, _) => 
+          fromPath(path, index)
       }
 
     // Adds completion to end of Opt

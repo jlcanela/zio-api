@@ -1,4 +1,7 @@
 target/
+.bloop
 .bsp
+.history
 .idea
+.metals
 .DS_Store

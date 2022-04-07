@@ -1,16 +1,15 @@
 ThisBuild / scalaVersion     := "2.13.8"
-ThisBuild / version          := "0.1.0-SNAPSHOT"
+ThisBuild / version          := "0.1.0-SNAPSHOT-bump-rc3"
 ThisBuild / organization     := "com.example"
 ThisBuild / organizationName := "example"
 
 val sttpVersion       = "3.4.1"
-val zioHttpVersion    = "2.0.0-RC3"
-val zioJsonVersion    = "0.3.0-RC3"
-val zioMagicVersion   = "0.3.8"
-val zioNioVersion     = "2.0.0-RC2"
-val zioProcessVersion = "0.7.0-RC2-2"
-val zioVersion        = "2.0.0-RC2"
-val zioSchemaVersion  = "0.2.0-RC1-1"
+val zioHttpVersion    = "2.0.0-RC5"
+val zioJsonVersion    = "0.3.0-RC5"
+val zioNioVersion     = "2.0.0-RC4"
+val zioProcessVersion = "0.7.0-RC3"
+val zioVersion        = "2.0.0-RC3"
+val zioSchemaVersion  = "0.2.0-RC3-1"
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
